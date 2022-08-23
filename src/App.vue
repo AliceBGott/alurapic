@@ -2,9 +2,9 @@
  <div class="corpo">
     <h1 class="centralizado">{{titulo}}</h1>
 
-    <input type="search" class="filtro" placeholder="filtre pelo titulo"></input>
+    <input type="search" class="filtro" v-on:input="filtro=$event.target.value" placeholder="filtre pelo titulo"></input>
     <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotos">
+      <li class="lista-fotos-item" v-for="foto of fotosComFiltro">
         <img v-bind:src="foto.url" v-bind:alt="foto.titulo">
 
         <meu-painel :titulo="foto.titulo">
@@ -31,8 +31,19 @@ export default {
 
     return {
       titulo: 'Alurapic',
-      fotos: []
+      fotos: [],
+      filtro: ''
       
+    }
+  },
+
+  computed: {
+    fotosComFiltro(){
+      if(this.filtro){
+        return [];
+      }else{
+        return this.fotos;
+      }
     }
   },
 
