@@ -1,6 +1,6 @@
 <template>
  <div>
-    <h1 class="centralizado">{{titulo}}</h1>
+    <h1 class="centralizado" >{{titulo}}</h1>
 
     <input type="search" class="filtro" v-on:input="filtro=$event.target.value" placeholder="filtre pelo titulo">
     <ul class="lista-fotos">
@@ -8,13 +8,13 @@
        
 
 
-        <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
+        <meu-painel :titulo="foto.titulo" >
+          <imagem-responsiva :url="foto.url" :titulo="foto.titulo" v-meu-transform:scale.animate="1.2"/>
           <meu-botao 
             tipo="button" 
             rotulo="REMOVER" 
             @botaoAtivado="remove(foto)" 
-            :confirmacao="false"
+            confirmacao="false"
             estilo="perigo"/>
         </meu-painel>
 
