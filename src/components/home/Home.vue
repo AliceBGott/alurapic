@@ -9,7 +9,8 @@
 
 
         <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
+          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
+          <meu-botao tipo="button" rotulo="REMOVER"/>
         </meu-painel>
 
          
@@ -25,11 +26,12 @@
 <script>
 import Painel from '../shared/painel/painel.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
+import Botao  from '../shared/botao/Botao.vue';
 export default {
   components: {
     "meu-painel": Painel,
     "imagem-responsiva": ImagemResponsiva,
-    ImagemResponsiva
+    "meu-botao": Botao,
 },
   data (){
 
