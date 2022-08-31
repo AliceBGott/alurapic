@@ -7,6 +7,7 @@ import { routes } from './routes';
 
 import './directives/Transform';
 
+
 Vue.use(VueRouter);
 
 // adicionando a propriedade mode com o valor history.
@@ -20,6 +21,12 @@ const router = new VueRouter({
 Vue.use(VueResource);
 Vue.http.options.root = 'http://localhost:3000';
 
+
+// importando o VeeValidate 
+import VeeValidate from 'vee-validate';
+
+// registrando o plugin 
+Vue.use(VeeValidate);
 new Vue({
   el: '#app',
   router,
