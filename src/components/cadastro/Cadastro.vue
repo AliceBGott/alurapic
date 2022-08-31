@@ -76,11 +76,8 @@ export default {
 
     this.service = new FotoService(this.$resource);
 
-    if(this.id) {
-      this.service
-        .busca(this.id)
-        .then(foto => this.foto = foto);
-    }
+    this.service.lista()
+      .then(fotos => this.fotos = fotos, err => this.mensagem = err.message);
   }
 }
 

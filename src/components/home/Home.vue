@@ -78,8 +78,7 @@ export default {
             this.mensagem = 'Foto removida com sucesso'
             }, 
             err => {
-            console.log(err);
-            this.mensagem = 'Não foi possível remover a foto';
+            this.mensagem = err.mensagem;
             
             });
 
