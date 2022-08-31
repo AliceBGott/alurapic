@@ -56,8 +56,8 @@ export default {
   methods: {
     grava(){
         /*colocar novo item dentro da lista  */
-        this.$http
-            .post('http://localhost:3000/v1/fotos',this.foto)
+        this.resource
+            .post('v1/fotos',this.foto)
             /*se tudo correr bem, limpa formulario, se der erro imprime o erro no console */
             .then(() => this.foto = new Foto(), err=> console.log(err))
     }
