@@ -3,8 +3,8 @@
 <template>
 
   <div>
-    <h1 class="centralizado">Cadastro</h1>
-    <h2 class="centralizado"></h2>
+     <h1 v-if="foto._id" class="centralizado">Alteração</h1>
+    <h1 v-else class="centralizado">Inclusão</h1>
 
     <form @submit.prevent="grava()">
       <div class="controle">
@@ -51,16 +51,35 @@ export default {
 
     return{
         foto:new Foto(),
+        /*o id criado é o id passado na url */
+        /*deve ser o nome do coringa colocado na rota */
+        id: this.$route.params.id
     }
   },
 
   methods: {
     grava(){
         /*colocar novo item dentro da lista  */
-        this.resource
-            .post('v1/fotos',this.foto)
-            /*se tudo correr bem, limpa formulario, se der erro imprime o erro no console */
-            .then(() => this.foto = new Foto(), err=> console.log(err))
+        /*se tudo correr bem, limpa formulario, se der erro imprime o erro no console */    
+      this.service
+        .cadastra(this.foto)
+        .then(() => {
+            /* */
+            if(this.id) this.$router.push({ name: 'home'});
+            this.foto = new Foto()
+        }, 
+        err => console.log(err));
+    }
+  },
+
+  created() {
+
+    this.service = new FotoService(this.$resource);
+
+    if(this.id) {
+      this.service
+        .busca(this.id)
+        .then(foto => this.foto = foto);
     }
   }
 }
