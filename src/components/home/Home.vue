@@ -34,6 +34,7 @@ import Painel from '../shared/painel/painel.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
 import Botao  from '../shared/botao/Botao.vue';
 import Transform from '../../directives/Transform';
+import FotoService from '../../domain/foto/FotoService';
 
 export default {
   components: {
@@ -82,11 +83,13 @@ export default {
   },
 
   created(){
-    this.resource = this.$resource('v1/fotos{/id}');
 
-    this.resource
-      .query()
-      .then(res => res.json())
+    this.service = new FotoService(this.$resource);
+
+
+      this.service
+      /*devolve uma promise que vai dar acesso à lista de fotos do servidor */
+      .lista()
       .then(fotos => this.fotos = fotos, err => console.log(err));
   }
 }
